@@ -1,29 +1,36 @@
 <template>
   <div>
-    <nav-header></nav-header>
-    <nav-main></nav-main>
-    <nav-footer></nav-footer>
+   {{ name }}-
+   {{ num }}-
+   {{ arr[1] }}- 
+    {{ obj1.age }}
   </div>
 </template>
 
 
 <script>
-  import NavHeader from '@/components/NavHeader.vue'
-  import NavMain from '@/components/NavMain.vue'
-  import NavFooter from '@/components/NavFooter.vue'
-  import { defineComponent } from 'vue'
+
+  import { defineComponent, ref } from 'vue'
 
   export default defineComponent({
     name: 'Home',
     components: {
-      NavHeader,
-      NavMain,
-      NavFooter,
+      
    
     },
-    setup() {
+    setup(props, ctx) {
+      let num = ref(111)
+      let name = ref('jack')
+      let arr = ref([1, 'aa', 'cc'])
+      let obj1 = ref({age:20})
 
-    }
+      return {
+        name,
+        num,
+        arr,
+        obj1
+      }
+    } 
   })
 </script>
 
