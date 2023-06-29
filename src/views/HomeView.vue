@@ -1,49 +1,31 @@
 <template>
   <div>
-   {{ name }}-
-   {{ obj }}-
-   {{ age }}- 
-    {{ sex }}
+    <nav-header></nav-header>
+    <nav-main></nav-main>
+    <nav-footer></nav-footer>
   </div>
 </template>
 
 
 <script>
+import navFooter from '../components/navFooter.vue';
+import navMain from '../components/navMain.vue';
+import navHeader from '../components/navHeader.vue';
 
-  import { defineComponent, ref, reactive, toRefs} from 'vue'
+import { defineComponent, ref, reactive, toRefs } from 'vue'
 
-  export default defineComponent({
-    name: 'Home',
-    components: {
-      
-   
-    },
-    setup(props, ctx) {
-      // let num = ref(111)
-      // let name = ref('jack')
-      // let arr = ref([1, 'aa', 'cc'])
-      // let obj1 = ref({age:20})
+export default defineComponent({
+  name: 'Home',
+  components: {
+    navHeader,
+    navMain,
+    navFooter
 
+  },
+  setup(props, ctx) {
 
-      let data = reactive({
-        name: 'jack',
-        age: 20,
-        sex: ['man', 'wuman'],
-        obj: {price:100}
-      })
-
-      return {
-        ...toRefs(data)
-        // name,
-        // num,
-        // arr,
-        // obj1
-      }
-    } 
-  })
+  }
+})
 </script>
 
-<style scoped>
-
-
-</style>
+<style scoped></style>
