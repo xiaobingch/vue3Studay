@@ -2,7 +2,7 @@
     <div>
         <div>Completed{{ isComplete }} / All{{ all }}</div>
         <div v-if="isComplete > 0">
-            <button>Clear Completed</button>
+            <button @click="clear">Clear Completed</button>
         </div>
     </div>
 </template>
@@ -15,10 +15,13 @@ import { defineComponent, ref } from 'vue';
         setup(){
             let isComplete = ref(1)
             let all = ref(3)
-
+            let clear = ()=>{
+                console.log(clear);
+            }
             return {
                 isComplete,
-                all
+                all,
+                clear
             }
 
         }
