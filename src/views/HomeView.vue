@@ -1,9 +1,11 @@
 <template>
   <div>
-    <nav-header></nav-header>
+
+    <button @click="goto">goto</button>
+    <!-- <nav-header></nav-header>
     <nav-main></nav-main>
     <nav-footer></nav-footer>
-    {{ list }}
+    {{ list }} -->
     <!-- <div>
       
       {{ num }} ---{{ num2 }}
@@ -20,6 +22,7 @@ import navMain from '../components/navMain.vue';
 import navHeader from '../components/navHeader.vue';
 import { defineComponent} from 'vue'
 import { useStore } from 'vuex';
+import { useRouter } from 'vue-router';
 
 export default defineComponent({
   name: 'Home',
@@ -30,8 +33,17 @@ export default defineComponent({
 
   },
   setup() {
-    let store = useStore()
-    let list = store.state.list  
+    let router = useRouter()
+    console.log(router)
+    let goto = ()=>{
+      //push 调整路径
+      //go（整数）正前进，负数后退
+      //back 返回上一页
+      //forword 前进一页
+      router.push('/about')
+    }
+    // let store = useStore()
+    // let list = store.state.list  
     // let num = ref(10)
     // let num2 = ref(20)
     // let sum = computed(()=> {
@@ -47,7 +59,8 @@ export default defineComponent({
       // num2,
       // sum,
       // add
-      list
+      // list
+      goto,
     }
 
   }
