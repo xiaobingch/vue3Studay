@@ -16,7 +16,7 @@ const router = createRouter({
       //path： 路由路径 必填
       //component ：组件  必填
       //name：名称
-      path: '/home',
+      path: '/home/:name/:age',
       name: 'home',
       component: () => import('../views/HomeView.vue')
     },

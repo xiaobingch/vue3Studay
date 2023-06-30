@@ -22,7 +22,7 @@ import navMain from '../components/navMain.vue';
 import navHeader from '../components/navHeader.vue';
 import { defineComponent} from 'vue'
 import { useStore } from 'vuex';
-import { useRouter } from 'vue-router';
+import { useRoute, useRouter } from 'vue-router';
 
 export default defineComponent({
   name: 'Home',
@@ -34,7 +34,12 @@ export default defineComponent({
   },
   setup() {
     let router = useRouter()
-    console.log(router)
+    let route = useRoute()
+
+    console.log(route.params)
+
+    //num 也会转变为string
+    // console.log(typeof(route.query.age));
     let goto = ()=>{
       //push 调整路径
       //go（整数）正前进，负数后退
