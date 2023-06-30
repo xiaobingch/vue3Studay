@@ -3,12 +3,9 @@
         <div class="item">
             <input type="checkbox" v-model="item.complete">
             {{ item.title }}
-            <button 
-            class="del"
-            @click="del(item, index)"
-            >Del</button>
+            <button class="del" @click="del(item, index)">Del</button>
         </div>
-       
+
     </div>
 </template>
 
@@ -18,7 +15,7 @@ import { defineComponent, ref } from 'vue';
 
 export default defineComponent({
     name: 'navMain',
-    setup() { 
+    setup() {
         let list = ref([
             {
                 title: 'eat',
@@ -33,8 +30,7 @@ export default defineComponent({
                 complete: false
             }
         ])
-        let del = (item, index) =>
-        {
+        let del = (item, index) => {
             console.log(item)
             console.log(index)
         }
@@ -51,28 +47,28 @@ export default defineComponent({
 
 
 <style scoped lang="scss">
-    .item{
-        height: 35px;
-        line-height: 35px;
-        position: relative;
-        width: 160px;
-        z-index: 999;
-        // cursor: pointer;
-        button {
-            position: absolute;
-            right: 20px;
-            top:6px;
-            display: none;
-        }
-        &:hover {
-            background-color: #aaa;
-            button{
-                display: block;
-            }
-        }
+.item {
+    height: 35px;
+    line-height: 35px;
+    position: relative;
+    width: 160px;
+    z-index: 999;
 
+    // cursor: pointer;
+    button {
+        position: absolute;
+        right: 20px;
+        top: 6px;
+        display: none;
     }
 
-   
-    
+    &:hover {
+        background-color: #aaa;
+
+        button {
+            display: block;
+        }
+    }
+
+}
 </style>
