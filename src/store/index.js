@@ -1,5 +1,5 @@
 import { START_LOCATION } from "vue-router";
-import { createStore} from "vuex";
+import { createStore } from 'vuex';
 export default createStore ({
     //定义所需要的状态
     state: {
