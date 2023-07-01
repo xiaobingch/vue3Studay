@@ -1,20 +1,8 @@
 <template>
   <div>
-
-    <button @click="goto">goto</button>
-    <div>
-      {{ name }}
-    </div>
-    <!-- <nav-header></nav-header>
-    <nav-main></nav-main>
-    <nav-footer></nav-footer>
-    {{ list }} -->
-    <!-- <div>
-      
-      {{ num }} ---{{ num2 }}
-      和是：{{ sum }}
-      <button @click="add">ADD</button>
-    </div>-->
+    <nav-header @add='add'></nav-header>
+    <nav-main :list="list" @del="del"></nav-main>
+    <nav-footer :list="list" @clear = 'clear'></nav-footer>
   </div>
 </template>
 
@@ -23,9 +11,8 @@
 import navFooter from '../components/navFooter.vue';
 import navMain from '../components/navMain.vue';
 import navHeader from '../components/navHeader.vue';
-import { defineComponent, onMounted, ref } from 'vue'
-import { useStore } from 'vuex';
-import { useRoute, useRouter } from 'vue-router';
+import { computed, defineComponent, onMounted, ref } from 'vue'
+import { useStore } from 'vuex'
 
 export default defineComponent({
   name: 'Home',
@@ -36,29 +23,45 @@ export default defineComponent({
 
   },
   setup() {
-    //全局路由对象
-    let router = useRouter()
-    //当前路由对象
-    let route = useRoute()
-    //num 也会转变为string
-    // console.log(typeof(route.query.age));
-    let name = ref('11111')
-    let age = ref('')
-    let obj = ref({})
-    console.log(route.query.name);
-    onMounted(() => {
-      name.value = route.query.name
-
+    let store = useStore()
+    let list = computed(() => {
+      return store.state.list
     })
+    let value = ref('')
+    //添加任务
+    let add = (todo) => {
+      value.value = todo
+      let flag = true
+      list.value.map(item => {
+        if (item.title === value.value) {
+          flag = false
+          alert('任务已存在！');
+        }
+      })
+      if (flag) {
+        store.commit('addTodo', {
+          title: value.value,
+          complete: false
+        });
+      }
 
-    let goto = () => {
-      router.push('/about')
+    }
+    //删除任务
+    let del = (index) => {
+      store.commit('delTodo',index)
+    }
+
+    //清除已完成任务
+    let clear = (val) => {
+       store.commit('clear',val)
     }
 
     return {
-      name,
-      age,
-      goto,
+      add,
+      value,
+      list,
+      del,
+      clear
     }
 
   }

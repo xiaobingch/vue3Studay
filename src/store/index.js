@@ -14,7 +14,7 @@ export default createStore ({
             },
             {
                 title: 'walk',
-                complete: true
+                complete: false
             }
         ]
     },

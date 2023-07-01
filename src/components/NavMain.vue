@@ -3,7 +3,7 @@
         <div class="item">
             <input type="checkbox" v-model="item.complete">
             {{ item.title }}
-            <button class="del" @click="del(item, index)">Del</button>
+            <button class="del" @click="del(item, index)">删除</button>
         </div>
 
     </div>
@@ -14,28 +14,20 @@
 import { defineComponent, ref } from 'vue';
 
 export default defineComponent({
+    emits: ['del'],
     name: 'navMain',
-    setup() {
-        let list = ref([
-            {
-                title: 'eat',
-                complete: false
-            },
-            {
-                title: 'sleep',
-                complete: false
-            },
-            {
-                title: 'walk',
-                complete: false
-            }
-        ])
+    props: {
+        list: {
+            type: Array,
+            required: true
+        }
+        
+    },
+    setup(props, ctx) {
         let del = (item, index) => {
-            console.log(item)
-            console.log(index)
+            ctx.emit('del',index);
         }
         return {
-            list,
             del
         }
 
