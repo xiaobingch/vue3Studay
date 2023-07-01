@@ -30,7 +30,7 @@ export default defineComponent({
     }
     //一、加载页面时传递数据到父组件
     onMounted(() => {
-      ctx.emit('send', cdataOn.value)
+      ctx.emit('send2', cdataOn.value)
     })
     return {
       cdata,
